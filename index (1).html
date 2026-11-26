@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ficha Cadastral | Print Service</title>
+<meta name="description" content="Preencha a ficha cadastral para análise de crédito e emissão do contrato de locação de impressoras.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Print Service">
+<meta property="og:title" content="Ficha Cadastral | Print Service">
+<meta property="og:description" content="Preencha a ficha cadastral para análise de crédito e emissão do contrato de locação de impressoras.">
+<meta property="og:url" content="https://fichaprintservice.vercel.app/">
+<meta property="og:image" content="https://fichaprintservice.vercel.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0d1f4f">
+<link rel="icon" href="favicon.png">
+<style>*,*::before,*::after{box-sizing:border-box}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: faixa de marca no topo, formulário em coluna única com seções numeradas pela ordem de preenchimento, painel de envio ao final */
+:root{
+  --bg:#f3f5fa; --surface:#ffffff; --ink:#14203d; --muted:#5b6682; --line:#d7dce8;
+  --navy:#0d1f4f; --accent:#1f5fd1; --accent-ink:#ffffff; --field:#fbfcfe;
+  --ok:#137a46; --err:#b42318; --wa:#128c4b;
+  --c:#00a3e0; --m:#e5007e; --y:#ffd400;
+  --display:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b1226; --surface:#121b35; --ink:#e7ebf5; --muted:#9aa5c2; --line:#26325a;
+  --navy:#0a1533; --accent:#6f9cff; --accent-ink:#0b1226; --field:#0f1830;
+  --ok:#4cc488; --err:#ff7b6e; --wa:#2fbf71; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b1226; --surface:#121b35; --ink:#e7ebf5; --muted:#9aa5c2; --line:#26325a;
+  --navy:#0a1533; --accent:#6f9cff; --accent-ink:#0b1226; --field:#0f1830;
+  --ok:#4cc488; --err:#ff7b6e; --wa:#2fbf71; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.band{background:var(--navy);color:#fff}
+.band .in,.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band .in{padding-block:28px 22px}
+.logo{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#0d1f4f;border-radius:10px;padding:6px 10px;margin-bottom:16px;max-width:100%;box-sizing:border-box}
+.logo img{display:block;width:min(300px,100%);height:auto}
+.logo .dots{display:inline-flex;gap:4px}
+.logo .dots i{width:12px;height:12px;border-radius:50%;display:block}
+.logo .dots i:nth-child(1){background:var(--c)}.logo .dots i:nth-child(2){background:var(--m)}.logo .dots i:nth-child(3){background:var(--y)}
+.logo .word{font-family:var(--display);font-size:24px;letter-spacing:.04em;line-height:1;font-weight:600}
+.logo .word strong{font-weight:700}
+.brand{font-family:var(--display);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:14px;opacity:.85}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,6vw,42px);line-height:1.05;margin:6px 0 8px;text-wrap:balance}
+.band p{margin:0;color:#c9d3ee;max-width:60ch}
+.cmy{display:grid;grid-template-columns:1fr 1fr 1fr;height:6px}
+.cmy i:nth-child(1){background:var(--c)}.cmy i:nth-child(2){background:var(--m)}.cmy i:nth-child(3){background:var(--y)}
+.wrap{padding-block:24px 48px;display:grid;gap:20px}
+fieldset{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:20px;margin:0;display:grid;gap:14px;min-width:0}
+legend{font-family:var(--display);font-weight:700;font-size:21px;padding:0 6px;display:flex;align-items:center;gap:10px}
+legend b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:15px}
+.hint{color:var(--muted);font-size:14px;margin:-4px 0 0}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px 14px}
+.f{display:grid;gap:5px;grid-column:span 6;min-width:0}
+.s3{grid-column:span 3}.s2{grid-column:span 2}.s4{grid-column:span 4}
+@media (max-width:560px){.s3,.s2,.s4{grid-column:span 6}.s2.keep{grid-column:span 3}}
+label{font-weight:600;font-size:14px}
+label .req{color:var(--err)}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:7px;padding:10px 12px;width:100%;box-sizing:border-box}
+textarea{min-height:80px;resize:vertical}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.f.bad input,.f.bad select{border-color:var(--err)}
+.f .msg{color:var(--err);font-size:13px;min-height:0}
+.check{display:flex;gap:10px;align-items:center;font-weight:600;font-size:15px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--accent)}
+.actions{display:grid;gap:10px}
+button,.btn{font:inherit;font-weight:700;border:0;border-radius:8px;padding:14px 18px;cursor:pointer;text-align:center;text-decoration:none;display:block}
+.primary{background:var(--accent);color:var(--accent-ink);font-size:17px}
+.wa{background:var(--wa);color:#fff;font-size:17px}
+.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+#done{border:2px solid var(--ok)}
+#done legend b{background:var(--ok)}
+pre{white-space:pre-wrap;word-break:break-word;background:var(--field);border:1px solid var(--line);border-radius:7px;padding:12px;font-size:13px;max-height:260px;overflow:auto;margin:0}
+.contact{color:var(--muted);font-size:14px}
+.contact strong{color:var(--ink);user-select:all}
+.top-err{color:var(--err);font-weight:600}
+footer{color:var(--muted);font-size:13px;text-align:center}
+@media (prefers-reduced-motion:no-preference){button,.btn{transition:filter .15s}button:hover,.btn:hover{filter:brightness(1.08)}}
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="in">
+    <div class="logo"><img src="logo.jpg" alt="Print Service - Aluguel de impressoras" width="700" height="250"></div>
+    <h1>Ficha cadastral do cliente</h1>
+    <p>Preencha os dados abaixo para a análise de crédito e a emissão do contrato. Leva cerca de 5 minutos.</p>
+  </div>
+  <div class="cmy"><i></i><i></i><i></i></div>
+</header>
+
+<form class="wrap" id="form" novalidate>
+
+  <fieldset>
+    <legend><b>1</b>Dados da empresa</legend>
+    <div class="grid">
+      <div class="f"><label for="razao">Razão social <span class="req">*</span></label><input id="razao" required autocomplete="organization"></div>
+      <div class="f s3"><label for="fantasia">Nome fantasia <span class="req">*</span></label><input id="fantasia" required></div>
+      <div class="f s3"><label for="cnpj">CNPJ <span class="req">*</span></label><input id="cnpj" required inputmode="numeric" placeholder="00.000.000/0000-00" data-mask="cnpj"><span class="msg"></span></div>
+      <div class="f s3"><label for="ie">Inscrição estadual <span class="req">*</span></label><input id="ie" required inputmode="numeric"></div>
+      <div class="f s3" style="align-self:end"><label class="check" for="ieIsento"><input type="checkbox" id="ieIsento">Empresa isenta de IE</label></div>
+      <div class="f s3"><label for="segmento">Segmento / ramo de atividade <span class="req">*</span></label><input id="segmento" required placeholder="Ex.: clínica, escola, comércio"></div>
+      <div class="f s3"><label for="telEmpresa">Telefone comercial <span class="req">*</span></label><input id="telEmpresa" required inputmode="tel" placeholder="(11) 0000-0000" data-mask="tel"></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><b>2</b>Endereço da sede</legend>
+    <div class="grid">
+      <div class="f s2 keep"><label for="sCep">CEP <span class="req">*</span></label><input id="sCep" required inputmode="numeric" placeholder="00000-000" data-mask="cep"></div>
+      <div class="f s4"><label for="sRua">Rua / avenida <span class="req">*</span></label><input id="sRua" required></div>
+      <div class="f s2 keep"><label for="sNum">Número <span class="req">*</span></label><input id="sNum" required></div>
+      <div class="f s4"><label for="sComp">Complemento</label><input id="sComp" placeholder="Sala, andar, bloco"></div>
+      <div class="f s2"><label for="sBairro">Bairro <span class="req">*</span></label><input id="sBairro" required></div>
+      <div class="f s3"><label for="sCidade">Cidade <span class="req">*</span></label><input id="sCidade" required></div>
+      <div class="f s2 keep" style="grid-column:span 1"><label for="sUf">UF <span class="req">*</span></label><input id="sUf" required maxlength="2" style="text-transform:uppercase"></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><b>3</b>Local de entrega e instalação</legend>
+    <label class="check" for="mesmoEnd"><input type="checkbox" id="mesmoEnd" checked>É o mesmo endereço da sede</label>
+    <div class="grid" id="instBox" hidden>
+      <div class="f s2 keep"><label for="iCep">CEP <span class="req">*</span></label><input id="iCep" required inputmode="numeric" placeholder="00000-000" data-mask="cep"></div>
+      <div class="f s4"><label for="iRua">Rua / avenida <span class="req">*</span></label><input id="iRua" required></div>
+      <div class="f s2 keep"><label for="iNum">Número <span class="req">*</span></label><input id="iNum" required></div>
+      <div class="f s4"><label for="iComp">Complemento</label><input id="iComp"></div>
+      <div class="f s2"><label for="iBairro">Bairro <span class="req">*</span></label><input id="iBairro" required></div>
+      <div class="f s3"><label for="iCidade">Cidade <span class="req">*</span></label><input id="iCidade" required></div>
+      <div class="f s2 keep" style="grid-column:span 1"><label for="iUf">UF <span class="req">*</span></label><input id="iUf" required maxlength="2" style="text-transform:uppercase"></div>
+    </div>
+    <div class="grid">
+      <div class="f s3"><label for="horario">Melhor período para instalação</label><select id="horario"><option value="">Sem preferência</option><option>Manhã</option><option>Tarde</option></select></div>
+      <div class="f s3"><label for="respLocal">Quem recebe o técnico no local</label><input id="respLocal" placeholder="Nome e telefone"></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><b>4</b>Contato do dia a dia</legend>
+    <p class="hint">Pessoa que fala com a Print Service sobre chamados, toner e entregas.</p>
+    <div class="grid">
+      <div class="f s3"><label for="cNome">Nome e sobrenome <span class="req">*</span></label><input id="cNome" required autocomplete="name"></div>
+      <div class="f s3"><label for="cCargo">Cargo / função <span class="req">*</span></label><input id="cCargo" required></div>
+      <div class="f s3"><label for="cTel">WhatsApp <span class="req">*</span></label><input id="cTel" required inputmode="tel" placeholder="(11) 90000-0000" data-mask="tel"></div>
+      <div class="f s3"><label for="cEmail">E-mail <span class="req">*</span></label><input id="cEmail" type="email" required></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><b>5</b>Financeiro</legend>
+    <p class="hint">Pessoa que recebe os boletos, faturas e notas fiscais todo mês.</p>
+    <label class="check" for="mesmoFin"><input type="checkbox" id="mesmoFin">O financeiro é o mesmo contato acima</label>
+    <div class="grid">
+      <div class="f s3"><label for="fNome">Nome do responsável <span class="req">*</span></label><input id="fNome" required></div>
+      <div class="f s3"><label for="fSetor">Cargo / setor</label><input id="fSetor" placeholder="Ex.: contas a pagar"></div>
+      <div class="f s3"><label for="fEmail">E-mail para boletos e faturas <span class="req">*</span></label><input id="fEmail" type="email" required></div>
+      <div class="f s3"><label for="fTel">WhatsApp do financeiro <span class="req">*</span></label><input id="fTel" required inputmode="tel" placeholder="(11) 90000-0000" data-mask="tel"></div>
+      <div class="f"><label for="fEmail2">E-mail em cópia</label><input id="fEmail2" type="email" placeholder="Opcional"></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><b>6</b>Responsável pela assinatura</legend>
+    <p class="hint">Sócio, diretor ou procurador com poderes para assinar o contrato. O contrato digital será enviado para o e-mail informado aqui.</p>
+    <label class="check" for="mesmoAss"><input type="checkbox" id="mesmoAss">O responsável pela assinatura é o mesmo contato acima</label>
+    <div class="grid">
+      <div class="f"><label for="aNome">Nome completo <span class="req">*</span></label><input id="aNome" required></div>
+      <div class="f s3"><label for="aCpf">CPF <span class="req">*</span></label><input id="aCpf" required inputmode="numeric" placeholder="000.000.000-00" data-mask="cpf"><span class="msg"></span></div>
+      <div class="f s3"><label for="aRg">RG <span class="req">*</span></label><input id="aRg" required></div>
+      <div class="f s3"><label for="aOrgao">Órgão emissor / UF</label><input id="aOrgao" placeholder="Ex.: SSP/SP"></div>
+      <div class="f s3"><label for="aCargo">Cargo na empresa <span class="req">*</span></label><input id="aCargo" required placeholder="Ex.: sócio-administrador"></div>
+      <div class="f s3"><label for="aEmail">E-mail para assinatura <span class="req">*</span></label><input id="aEmail" type="email" required></div>
+      <div class="f s3"><label for="aTel">Celular <span class="req">*</span></label><input id="aTel" required inputmode="tel" placeholder="(11) 90000-0000" data-mask="tel"></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><b>7</b>Observações</legend>
+    <div class="f"><label for="obs">Algo que devemos saber?</label><textarea id="obs" placeholder="Opcional"></textarea></div>
+    <label class="check" for="aceite"><input type="checkbox" id="aceite" required>Autorizo a Print Service a usar estes dados para análise de crédito e elaboração do contrato.</label>
+  </fieldset>
+
+  <div class="actions">
+    <p class="top-err" id="topErr" hidden></p>
+    <button type="submit" class="primary" id="btnRevisar">Revisar e enviar</button>
+  </div>
+
+  <fieldset id="done" hidden>
+    <legend><b>✓</b>Quase pronto: envie para o consultor</legend>
+    <p class="hint">Toque no botão verde para abrir o WhatsApp com seus dados já escritos. Depois é só tocar em enviar.</p>
+    <a class="btn wa" id="btnWa" href="https://wa.me/5511964906039" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+    <button type="button" class="ghost" id="btnCopy">Copiar dados</button>
+    <pre id="resumo"></pre>
+    <p class="contact">Se o WhatsApp não abrir, copie os dados e envie para <strong>(11) 96490-6039</strong> ou para o e-mail <strong>carlos@printservicecartuchos.com.br</strong>.</p>
+  </fieldset>
+
+  <footer>Print Service · José Carlos Almeida, consultor de vendas · printservicecartuchos.com.br</footer>
+</form>
+
+<script>
+const $=id=>document.getElementById(id);
+const only=v=>v.replace(/\D/g,'');
+const masks={
+  cnpj:d=>d.slice(0,14).replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d)/,'$1-$2'),
+  cpf:d=>d.slice(0,11).replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2'),
+  cep:d=>d.slice(0,8).replace(/(\d{5})(\d)/,'$1-$2'),
+  tel:d=>{d=d.slice(0,11);if(d.length<=2)return d.length?'('+d:'';if(d.length<=6)return`(${d.slice(0,2)}) ${d.slice(2)}`;
+    const n=d.length===11?7:6;return`(${d.slice(0,2)}) ${d.slice(2,n)}-${d.slice(n)}`;}
+};
+document.querySelectorAll('[data-mask]').forEach(el=>el.addEventListener('input',()=>{el.value=masks[el.dataset.mask](only(el.value));}));
+
+function cnpjOk(v){const c=only(v);if(c.length!==14||/^(\d)\1+$/.test(c))return false;
+  const calc=n=>{let s=0,p=n-7;for(let i=0;i<n;i++){s+=c[i]*p--;if(p<2)p=9;}const r=s%11;return r<2?0:11-r;};
+  return calc(12)==c[12]&&calc(13)==c[13];}
+function cpfOk(v){const c=only(v);if(c.length!==11||/^(\d)\1+$/.test(c))return false;
+  const calc=n=>{let s=0;for(let i=0;i<n;i++)s+=c[i]*(n+1-i);const r=(s*10)%11;return r===10?0:r;};
+  return calc(9)==c[9]&&calc(10)==c[10];}
+
+// IE isenta
+$('ieIsento').addEventListener('change',e=>{const ie=$('ie');ie.disabled=e.target.checked;ie.required=!e.target.checked;if(e.target.checked)ie.value='ISENTO';else if(ie.value==='ISENTO')ie.value='';save();});
+// endereço de instalação
+function syncInst(){const same=$('mesmoEnd').checked;$('instBox').hidden=same;$('instBox').querySelectorAll('input').forEach(i=>{if(i.id!=='iComp')i.required=!same;});}
+$('mesmoEnd').addEventListener('change',()=>{syncInst();save();});
+// assinante = contato
+$('mesmoFin').addEventListener('change',e=>{if(e.target.checked){$('fNome').value=$('cNome').value;$('fSetor').value=$('cCargo').value;$('fEmail').value=$('cEmail').value;$('fTel').value=$('cTel').value;}save();});
+$('mesmoAss').addEventListener('change',e=>{if(e.target.checked){$('aNome').value=$('cNome').value;$('aCargo').value=$('cCargo').value;$('aEmail').value=$('cEmail').value;$('aTel').value=$('cTel').value;}save();});
+
+// rascunho local
+const KEY='ps-ficha-v1';
+function save(){try{const d={};document.querySelectorAll('#form input,#form textarea,#form select').forEach(i=>d[i.id]=i.type==='checkbox'?i.checked:i.value);localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(!d)return;for(const k in d){const el=$(k);if(!el)continue;if(el.type==='checkbox')el.checked=d[k];else el.value=d[k];}
+  if($('ieIsento').checked){$('ie').disabled=true;$('ie').required=false;}}catch(e){}}
+load();syncInst();
+$('form').addEventListener('input',()=>{save();$('done').hidden=true;});
+
+function v(id){return ($(id).value||'').trim();}
+function end(p){const comp=v(p+'Comp');return `${v(p+'Rua')}, ${v(p+'Num')}${comp?' - '+comp:''} - ${v(p+'Bairro')} - ${v(p+'Cidade')}/${v(p+'Uf').toUpperCase()} - CEP ${v(p+'Cep')}`;}
+
+function validate(){
+  let first=null,count=0;
+  document.querySelectorAll('#form .f').forEach(f=>{f.classList.remove('bad');const m=f.querySelector('.msg');if(m)m.textContent='';});
+  document.querySelectorAll('#form input[required],#form textarea[required]').forEach(el=>{
+    if(el.disabled||el.closest('[hidden]'))return;
+    let ok=el.type==='checkbox'?el.checked:el.value.trim()!=='' && el.checkValidity();
+    if(ok&&el.id==='cnpj'&&!cnpjOk(el.value)){ok=false;el.parentElement.querySelector('.msg').textContent='CNPJ inválido. Confira os números.';}
+    if(ok&&el.id==='aCpf'&&!cpfOk(el.value)){ok=false;el.parentElement.querySelector('.msg').textContent='CPF inválido. Confira os números.';}
+    if(!ok){count++;const f=el.closest('.f');if(f)f.classList.add('bad');if(!first)first=el;}
+  });
+  return {first,count};
+}
+
+function texto(){
+  const inst=$('mesmoEnd').checked?'Mesmo endereço da sede':end('i');
+  const L=[
+    '*FICHA CADASTRAL - PRINT SERVICE*','',
+    '*EMPRESA*',
+    'Razão social: '+v('razao'),'Nome fantasia: '+v('fantasia'),'CNPJ: '+v('cnpj'),'Inscrição estadual: '+v('ie'),
+    'Segmento: '+v('segmento'),'Telefone comercial: '+v('telEmpresa'),'',
+    '*ENDEREÇO DA SEDE*',end('s'),'',
+    '*ENTREGA E INSTALAÇÃO*',inst];
+  if(v('horario'))L.push('Melhor período: '+v('horario'));
+  if(v('respLocal'))L.push('Recebe o técnico: '+v('respLocal'));
+  L.push('','*CONTATO*','Nome: '+v('cNome'),'Cargo: '+v('cCargo'),'WhatsApp: '+v('cTel'),'E-mail: '+v('cEmail'),'',
+    '*FINANCEIRO (BOLETOS E FATURAS)*','Nome: '+v('fNome')+(v('fSetor')?' - '+v('fSetor'):''),'E-mail: '+v('fEmail')+(v('fEmail2')?' (cópia: '+v('fEmail2')+')':''),
+    'WhatsApp: '+v('fTel'),'',
+    '*RESPONSÁVEL PELA ASSINATURA*','Nome: '+v('aNome'),'CPF: '+v('aCpf'),'RG: '+v('aRg')+(v('aOrgao')?' ('+v('aOrgao')+')':''),
+    'Cargo: '+v('aCargo'),'E-mail: '+v('aEmail'),'Celular: '+v('aTel'));
+  if(v('obs'))L.push('','*OBSERVAÇÕES*',v('obs'));
+  return L.join('\n');
+}
+
+$('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const {first,count}=validate();
+  if(count){$('topErr').textContent=count===1?'Falta 1 campo obrigatório. Ele está marcado em vermelho.':`Faltam ${count} campos obrigatórios. Eles estão marcados em vermelho.`;$('topErr').hidden=false;$('done').hidden=true;first.focus();return;}
+  $('topErr').hidden=true;
+  const t=texto();
+  $('resumo').textContent=t;
+  $('btnWa').href='https://wa.me/5511964906039?text='+encodeURIComponent(t);
+  $('done').hidden=false;
+  $('done').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+});
+
+$('btnCopy').addEventListener('click',async()=>{
+  const b=$('btnCopy');
+  try{await navigator.clipboard.writeText($('resumo').textContent);b.textContent='Dados copiados';}
+  catch(e){const r=document.createRange();r.selectNodeContents($('resumo'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Texto selecionado: use Copiar';}
+  setTimeout(()=>b.textContent='Copiar dados',2500);
+});
+</script>
+
+</body>
+</html>
